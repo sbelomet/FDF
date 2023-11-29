@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/29 13:29:42 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/24 14:08:19 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/11/29 10:41:21 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
-void	*ft_calloc(int count, int size)
-{
-	void	*p;
+char	*get_next_line(int fd);
+int		ft_strchr(char *s, char c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, int start, int len);
 
-	p = malloc(count * size);
-	if (!p)
-		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
-}
-
-/*
-int	main(void)
-{
-	int	*p;
-	int	i;
-
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
-}*/
+#endif
