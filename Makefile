@@ -6,7 +6,7 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 14:19:27 by sbelomet          #+#    #+#              #
-#    Updated: 2023/11/29 13:18:50 by sbelomet         ###   ########.fr        #
+#    Updated: 2023/12/01 10:49:37 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ RAINBOW		=	$(RED)-$(YELLOW)-$(GREEN)-$(CYAN)-$(BLUE)-$(PURPLE)-
 
 #Sources
 
-FILES	=	main line_drawing palette_utils1 get_next_line get_next_line_utils drawing
+FILES	=	main line_drawing palette_utils1 get_next_line get_next_line_utils drawing \
+			coords_utils1
 SRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
