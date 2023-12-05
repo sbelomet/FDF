@@ -1,6 +1,6 @@
 NAME =		libft.a
 
-SRCS = 		 ft_strlen.c ft_calloc.c ft_putchar_fd.c ft_putstr_fd.c ft_itoa.c ft_memset.c ft_atoi.c ft_split.c
+SRCS = 		 ft_strlen.c ft_calloc.c ft_putchar_fd.c ft_putstr_fd.c ft_itoa.c ft_memset.c ft_atoi.c ft_split.c ft_tablen.c ft_free_array.c
 
 HEADERS =	libft.h
 
