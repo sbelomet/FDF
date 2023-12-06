@@ -6,41 +6,37 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:10:11 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/05 13:19:36 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:14:18 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	ft_erase_screen(t_basic *basic)
-{
-	int	i;
-	int	j;
-
-	i = 200;
-	while (i++ < 500)
-	{
-		j = 0;
-		while (j++ < 500)
-		{
-			mlx_pixel_put(basic->mlx_ptr, basic->win_ptr, i, j, 0);
-		}
-	}
-}
  
 int	ft_on_press(int key, void *param)
 {
 	t_basic 		*basic;
+	t_coord			*coords;
 	static double	angle = 0;
 
 	basic = (t_basic *)param;
+	coords = basic->coords;
 	ft_printf("key: %d\n", key);
 	if (key == 53)
 		exit(0);
-	if (key == 123)
+	if (key == 126)
 	{
-		angle += 0.05;
-		ft_erase_screen(basic);
+		angle -= 0.01;
+		ft_erase_shape(basic);
+		ft_reset_coords(&coords);
+		ft_rotatex(&coords, angle);
+		ft_draw_coords(*basic);
+	}
+	if (key == 125)
+	{
+		angle += 0.01;
+		ft_erase_shape(basic);
+		ft_reset_coords(&coords);
+		ft_rotatex(&coords, angle);
 		ft_draw_coords(*basic);
 	}
 	return (0);
@@ -50,13 +46,16 @@ int	ft_anim(void *param)
 {
 	t_basic 		*basic;
 	t_coord			*coords;
-	static double	angle;
+	static double	angle = 0;
 
 	basic = (t_basic *)param;
 	coords = basic->coords;
-	angle -= 0.017;
-	ft_erase_screen(basic);
+	angle += 0.01;
+	ft_erase_shape(basic);
+	ft_reset_coords(&coords);
 	ft_rotatex(&coords, angle);
+	ft_rotatey(&coords, angle);
+	ft_rotatez(&coords, angle);
 	ft_draw_coords(*basic);
 	return (0);
 }
@@ -95,13 +94,26 @@ int	ft_on_click(int button, int x, int y, void *param)
 		palette = palette->next;
 	}
 	ft_printf("button: %d, x: %d, y: %d\n", button, x, y);
+
+	if (button == 4)
+	{
+		basic->usr_inputs->zoom++;
+		ft_zoom(*basic);
+		ft_draw_coords(*basic);
+	}
+	if (button == 5)
+	{
+		basic->usr_inputs->zoom--;
+		ft_zoom(*basic);
+		ft_draw_coords(*basic);
+	}
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_basic choses;
-	
+
 	if (ac != 2)
 	{
 		ft_printf("Usage: ./fdf <map>\n");
@@ -113,14 +125,12 @@ int	main(int ac, char **av)
 		ft_printf("ERROR: Unknown file\n");
 		return (1);
 	}
-	
-	ft_printf("av[1]: %s, fd: %d\n", av[1], choses.fd);
-
 	choses.mlx_ptr = mlx_init();
 	choses.win_ptr = mlx_new_window(choses.mlx_ptr, 720, 720, "FDF HAHAHAHAHAHAHA");
-
 	choses.coords = ft_get_coords(choses.fd);
-	
+	choses.usr_inputs = (t_usrinp *)malloc(sizeof(t_usrinp));
+	choses.usr_inputs->zoom = 20;
+	ft_isobase(choses);
 	ft_draw_coords(choses);
 	mlx_mouse_hook(choses.win_ptr, ft_on_click, &choses);
 	mlx_key_hook(choses.win_ptr, ft_on_press, &choses);

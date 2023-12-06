@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:54:57 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/28 14:41:25 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:25:44 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_draw_line(int x0, int y0, int x1, int y1, void *mlx_ptr, void *win_ptr, 
 
 	dx = x1 - x0;
 	dy = y1 - y0;
-	if (ABS(dy) < ABS(dx))
+	if (ft_abs(dy) < ft_abs(dx))
 	{
 		if (x0 > x1)
 			ft_draw_line_desc(x1, y1, x0, y0, mlx_ptr, win_ptr, color);

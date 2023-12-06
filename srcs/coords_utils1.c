@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 10:45:29 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/05 15:47:29 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:12:14 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_coord	*ft_new_coord(int x, int y, int z)
 	res = (t_coord *)malloc(sizeof(t_coord));
 	if (!res)
 		return (NULL);
+	res->basex = x;
+	res->basey = y;
+	res->basez = z;
 	res->x = x;
 	res->y = y;
 	res->z = z;
@@ -53,21 +56,27 @@ void	ft_coord_add(t_coord **coords, t_coord *new)
 		*coords = new;
 }
 
-t_coord	*ft_finddown(t_coord *coord, int tablen)
+void	ft_finddown(t_coord **coord, int tablen)
 {
 	int		i;
-	t_coord	*tmp;
+	t_coord	*tmp1;
+	t_coord	*tmp2;
 
-	i = 0;
-	tmp = coord;
-	while (i++ < tablen)
+	tmp1 = *coord;
+	while (tmp1)
 	{
-		if (tmp->next)
-			tmp = tmp->next;
-		else
-			return (NULL);
+		i = 0;
+		tmp2 = tmp1;
+		while (i++ < tablen)
+		{
+			if (tmp2->next)
+				tmp2 = tmp2->next;
+			else
+				break ;
+		}
+		tmp1->down = tmp2;
+		tmp1 = tmp1->next;
 	}
-	return (tmp);
 }
 
 t_coord	*ft_get_coords(int fd)
@@ -78,25 +87,24 @@ t_coord	*ft_get_coords(int fd)
 	int		x;
 	t_coord	*coords;
 
-	y = -20;
+	y = -1;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		ft_printf("line: %s\n", line);
 		linesplit = ft_split(line, ' ');
-		y += 20;
+		y++;
 		x = 0;
 		while (linesplit[x])
 		{
-			ft_coord_add(&coords, ft_new_coord(x * 20, y, ft_atoi(linesplit[x]) * 20));
-			ft_printf("x: %d, y: %d, z: %d\n", coords->x, coords->y, coords->z);
+			ft_coord_add(&coords, ft_new_coord(x, y, ft_atoi(linesplit[x]) * 5));
 			x++;
 		}
 		ft_last_coord(&coords)->linebreak = 1;
 		free(line);
 		ft_free_array(linesplit);
 	}
+	ft_finddown(&coords, x);
 	return (coords);
 }
