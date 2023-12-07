@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:00:00 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/06 10:55:41 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:01:32 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_rotatex(t_coord **coords, double angle)
 {
-	int		oldy;
-	int		oldz;
+	double	oldy;
+	double	oldz;
 	t_coord	*tmp;
 
 	tmp = *coords;
@@ -31,8 +31,8 @@ void	ft_rotatex(t_coord **coords, double angle)
 
 void	ft_rotatey(t_coord **coords, double angle)
 {
-	int		oldx;
-	int		oldz;
+	double	oldx;
+	double	oldz;
 	t_coord	*tmp;
 
 	tmp = *coords;
@@ -48,8 +48,8 @@ void	ft_rotatey(t_coord **coords, double angle)
 
 void	ft_rotatez(t_coord **coords, double angle)
 {
-	int		oldx;
-	int		oldy;
+	double	oldx;
+	double	oldy;
 	t_coord	*tmp;
 
 	tmp = *coords;

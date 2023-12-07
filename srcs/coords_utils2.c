@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:56:32 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/06 15:35:56 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:27:05 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ void	ft_reset_coords(t_coord **coords)
 	}
 }
 
-void	ft_isobase(t_basic basic)
+void	ft_isobaserot(t_basic basic)
 {
 	t_coord	*tmp;
 
 	tmp = basic.coords;
-	ft_zoom(basic);
-	ft_rotatex(&basic.coords, -0.34906585039886);
-	ft_rotatey(&basic.coords, 0.34906585039886);
-	ft_rotatez(&basic.coords, -0.34906585039886);
+	ft_rotatex(&basic.coords, -0.3490658503988);
+	ft_rotatey(&basic.coords, 0.3490658503988);
+	ft_rotatez(&basic.coords, -0.3490658503988);
 	while (tmp)
 	{
 		tmp->basex = tmp->x;
@@ -51,8 +50,8 @@ void	ft_zoom(t_basic	basic)
 	tmp = basic.coords;
 	while (tmp)
 	{
-		tmp->x = tmp->basex * basic.usr_inputs->zoom;
-		tmp->y = tmp->basey * basic.usr_inputs->zoom;
+		tmp->x = tmp->x * basic.usr_inputs->zoom;
+		tmp->y = tmp->y * basic.usr_inputs->zoom;
 		tmp = tmp->next;
 	}
 }

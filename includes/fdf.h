@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:11:02 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/06 13:49:23 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:59:47 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "get_next_line.h"
 # include <math.h>
 
+# define WIDTH 720
+# define HEIGHT 720
+
 typedef struct s_palette
 {
 	int					color;
@@ -28,12 +31,12 @@ typedef struct s_palette
 
 typedef struct s_coord
 {
-	int				x;
-	int				y;
-	int				z;
-	int				basex;
-	int				basey;
-	int				basez;
+	double			x;
+	double			y;
+	double			z;
+	double			basex;
+	double			basey;
+	double			basez;
 	int				linebreak;
 	struct s_coord	*down;
 	struct s_coord	*next;
@@ -51,6 +54,11 @@ typedef struct s_basic
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
+	char		*data;
+	int			size_line;
+	int			bitsperpix;
+	int			endian;
 	int			fd;
 	t_coord		*coords;
 	t_usrinp	*usr_inputs;
@@ -65,14 +73,15 @@ t_coord		*ft_new_coord(int x, int y, int z);
 void		ft_coord_add(t_coord **coord, t_coord *new);
 t_coord		*ft_get_coords(int fd);
 void		ft_reset_coords(t_coord **coords);
-void		ft_isobase(t_basic basic);
+void		ft_isobaserot(t_basic basic);
 void		ft_zoom(t_basic basic);
 
 /* Drawing */
 
-void		ft_draw_line(int x0, int y0, int x1, int y1, void *mlx_ptr, void *win_ptr, int color);
+void		ft_draw_line(int x0, int y0, int x1, int y1, t_basic basic, int color);
 void		ft_erase_shape(t_basic *basic);
 void		ft_draw_coords(t_basic choses);
+void		ft_pixel_put(t_basic *basic, int x, int y, int color);
 
 /* Rotation Matrices*/
 
