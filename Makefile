@@ -6,14 +6,16 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 14:19:27 by sbelomet          #+#    #+#              #
-#    Updated: 2023/12/06 10:56:47 by sbelomet         ###   ########.fr        #
+#    Updated: 2023/12/08 15:52:48 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# -fsanitize=address -g3
 
 #Variables
 
 NAME		=	fdf
-HEADERS		=	-I includes
+HEADERS		=	-I includes -fsanitize=address -g3
 SRC_DIR		=	srcs/
 OBJ_DIR		=	objs/
 LIBFTPRINTF	=	libs/ft_printf/libftprintf.a
@@ -39,8 +41,7 @@ RAINBOW		=	$(RED)-$(YELLOW)-$(GREEN)-$(CYAN)-$(BLUE)-$(PURPLE)-
 
 #Sources
 
-FILES	=	main line_drawing palette_utils1 get_next_line get_next_line_utils drawing \
-			coords_utils1 coords_utils2 rotation_matrices
+FILES	=	main error_handling hooks_handling coords_utils1 get_next_line get_next_line_utils drawing rotation_matrices line_drawing
 SRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
@@ -55,7 +56,7 @@ makelibs:
 
 $(NAME):		makelibs $(OBJ)
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
-				$(CC) $(CFLAGS) $(OBJ) $(HEADERS) $(LIBFTPRINTF) $(MINILIBXCC) $(OPENGL) -o $(NAME)
+				$(CC) $(CFLAGS) $(HEADERS) $(OBJ) $(LIBFTPRINTF) $(MINILIBXCC) $(OPENGL) -o $(NAME)
 				@echo ""
 				@echo "$(GREEN)$(NAME) est compilé !$(DEF_COLOR)🥶🥶🥶"
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
