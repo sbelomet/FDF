@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:34:51 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/08 11:51:26 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:08:53 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,24 @@ int	ft_close_win(void *param)
 	exit(0);
 }
 
+int	ft_on_key_down(int key, void *param)
+{
+	t_base	*base;
+
+	base = (t_base *)param;
+	ft_printf("key: %d\n", key);
+	if (key == KEY_ESC)
+		ft_close_win(base);
+	else if (key == KEY_UP)
+		base->usrin->altitude += 0.01;
+	else if (key == KEY_DOWN)
+		base->usrin->altitude -= 0.01;
+	ft_draw(base);
+	return (0);
+}
+
 void	ft_hooks(t_base *base)
 {
 	mlx_hook(base->win_ptr, 17, 0, ft_close_win, base);
+	mlx_hook(base->win_ptr, 2, 0, ft_on_key_down, base);
 }

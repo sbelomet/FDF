@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:56:28 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/08 14:03:32 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:10:15 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,18 @@ t_coord	*ft_new_coord(int x, int y, char *z)
 {
 	t_coord	*res;
 	int		i;
-	char	*tmp;
 
 	res = (t_coord *)malloc(sizeof(t_coord));
 	if (!res)
 		ft_error("Malloc faliure (coord)");
 	i = 0;
-	while (z[i] && z[i] != ',')
-		i++;
-	tmp = ft_substr(z, 0, i);
-	res->basez = ft_atoi(tmp);
-	free(tmp);
-	res->basex = (double)x;
-	res->basey = (double)y;
+	res->basez = ft_atoi(z);
+	res->basex = x;
+	res->basey = y;
 	res->linebreak = 0;
-	res->color = 0xFFFFFF;
-	if (z[i])
-	{
-		tmp = ft_substr(z, i + 1, ft_strlen(z) - (i + 1));
-		res->color = ft_atoi(tmp);
-		free(tmp);
-	}
+	res->color = get_color(z);
 	res->next = NULL;
+	res->down = NULL;
 	return (res);
 }
 
@@ -73,8 +63,10 @@ void	ft_finddown(t_coord *coord, int tablen)
 	int		i;
 	t_coord	*tmp1;
 	t_coord	*tmp2;
+	int		flag;
 
 	tmp1 = coord;
+	flag = 0;
 	while (tmp1)
 	{
 		i = 0;
@@ -84,9 +76,13 @@ void	ft_finddown(t_coord *coord, int tablen)
 			if (tmp2->next)
 				tmp2 = tmp2->next;
 			else
+			{
+				flag = 1;
 				break ;
+			}
 		}
-		tmp1->down = tmp2;
+		if (!flag)
+			tmp1->down = tmp2;
 		tmp1 = tmp1->next;
 	}
 }
@@ -129,7 +125,6 @@ t_coord	*ft_get_coords(int fd, t_coord *coords)
 		free(line);
 		ft_free_array(linesplit);
 	}
-	ft_print_list(coords);
 	ft_finddown(coords, x);
 	return (coords);
 }

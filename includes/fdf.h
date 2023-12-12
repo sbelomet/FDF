@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:04:58 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/08 15:52:17 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:08:10 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # define WIDTH 720
 # define HEIGHT 720
+
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_ESC 53
 
 typedef struct s_coord
 {
@@ -70,10 +74,12 @@ int		ft_close_win(void *param);
 
 /* Coords Utils */
 t_coord	*ft_get_coords(int fd, t_coord *coords);
+int		get_color(char *z);
 
 /* Drawing */
 void	ft_draw(t_base *base);
-void	ft_draw_line(t_coord p1, t_coord p2, t_base base);
+void	ft_draw_line(t_coord p1, t_coord p2, t_base *base);
+void	ft_pixel_put(t_base *base, int x, int y, int color);
 
 /* Rotation Matrices */
 void	ft_rotatex(t_coord **coords, double angle);

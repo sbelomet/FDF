@@ -6,13 +6,13 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:23:52 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/06 12:24:54 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/12 13:05:06 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_abs(int n)
+double	ft_abs(double n)
 {
 	if (n < 0)
 		return (-n);

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_revstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:01:29 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 11:30:06 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/12/12 11:27:06 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/12/12 11:44:52 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tablen(char **tab)
+void	ft_revstr(char *s)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	tmp;
 
 	i = 0;
-	if (tab)
+	j = ft_strlen(s) - 1;
+	while (i < j)
 	{
-		while (tab[i])
-			i++;
+		tmp = s[i];
+		s[i] = s[j];
+		s[j] = tmp;
+		i++;
+		j--;
 	}
-	return (i);
 }

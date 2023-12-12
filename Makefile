@@ -6,7 +6,7 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 14:19:27 by sbelomet          #+#    #+#              #
-#    Updated: 2023/12/08 15:52:48 by sbelomet         ###   ########.fr        #
+#    Updated: 2023/12/12 10:39:55 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ RAINBOW		=	$(RED)-$(YELLOW)-$(GREEN)-$(CYAN)-$(BLUE)-$(PURPLE)-
 
 #Sources
 
-FILES	=	main error_handling hooks_handling coords_utils1 get_next_line get_next_line_utils drawing rotation_matrices line_drawing
+FILES	=	main error_handling hooks_handling coords_utils1 coords_utils2 get_next_line get_next_line_utils drawing rotation_matrices line_drawing
 SRC		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJ		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
 
