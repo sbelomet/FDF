@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:18:44 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 11:09:10 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:09:26 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,6 @@ void	ft_pixel_put(t_base *base, int x, int y, int color)
 	pos = (x * base->bitsperpix / 8) + (y * base->size_line);
 	if (x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT)
 		*(int *) &base->img_data[pos] = color;
-}
-/* 
-void	ft_erase_shape(t_basic *basic)
-{
-	t_coord		*coords;
-	t_usrinp	*userinput;
-
-	coords = basic->coords;
-	userinput = basic->usr_inputs;
-	while (coords->next)
-	{
-		if (!coords->linebreak)
-			ft_draw_line(coords->x * userinput->zoom + 300, coords->y * userinput->zoom + 200,
-				coords->next->x * userinput->zoom + 300, coords->next->y * userinput->zoom + 200, *basic, 0);
-		if (coords->down)
-			ft_draw_line(coords->x * userinput->zoom + 300, coords->y * userinput->zoom + 200,
-				coords->down->x * userinput->zoom + 300, coords->down->y * userinput->zoom + 200, *basic, 0);
-		coords = coords->next;
-	}
-} */
-
-void	ft_init_coords(t_base *base)
-{
-	t_coord	*tmp;
-
-	tmp = base->coords;
-	while (tmp)
-	{
-		tmp->x = tmp->basex;
-		tmp->y = tmp->basey;
-		tmp->z = tmp->basez;
-		tmp = tmp->next;
-	}
 }
 
 void	ft_isorotate(t_base *base)

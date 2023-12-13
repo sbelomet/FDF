@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:34:51 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 12:08:53 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:34:50 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,7 @@ void	ft_hooks(t_base *base)
 {
 	mlx_hook(base->win_ptr, 17, 0, ft_close_win, base);
 	mlx_hook(base->win_ptr, 2, 0, ft_on_key_down, base);
+	mlx_hook(base->win_ptr, 4, 0, ft_on_mouse_down, base);
+	mlx_hook(base->win_ptr, 5, 0, ft_on_mouse_up, base);
+	mlx_hook(base->win_ptr, 6, 0, ft_on_mouse_move, base);
 }

@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:04:58 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 12:08:10 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:08:10 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_ESC 53
+# define MOUSE_L 1
+# define MOUSE_R 2
+# define MOUSEW_UP 4
+# define MOUSEW_DOWN 5
 
 typedef struct s_coord
 {
-	double			basex;
-	double			basey;
-	double			basez;
+	int				basex;
+	int				basey;
+	int				basez;
 	double			x;
 	double			y;
 	double			z;
@@ -49,6 +53,7 @@ typedef struct s_usrin
 	double	zoom;
 	int		xshift;
 	int		yshift;
+	int		mousebtn;
 }			t_usrin;
 
 typedef struct s_base
@@ -71,10 +76,15 @@ void	ft_error(char *message);
 /* Hooks Handling */
 void	ft_hooks(t_base *base);
 int		ft_close_win(void *param);
+int 	ft_on_mouse_up(int button, int x, int y, void *param);
+int 	ft_on_mouse_down(int button, int x, int y, void *param);
+int		ft_on_mouse_move(int x, int y, void *param);
 
 /* Coords Utils */
-t_coord	*ft_get_coords(int fd, t_coord *coords);
+t_coord	*ft_get_coords(int fd, t_base *base);
 int		get_color(char *z);
+t_coord	*ft_last_coord(t_coord *coords);
+void	ft_init_coords(t_base *base);
 
 /* Drawing */
 void	ft_draw(t_base *base);

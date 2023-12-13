@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:01:11 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/08 16:02:32 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:38:03 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ t_usrin	*ft_usrin_init()
 	if (!usrin)
 		ft_error("Malloc failure (usrin)");
 	usrin->altitude = 1;
-	usrin->zoom = 30;
-	usrin->xshift = 150;
-	usrin->yshift = 150;
+	usrin->zoom = 3;
+	usrin->xshift = WIDTH >> 1;
+	usrin->yshift = HEIGHT >> 1;
+	usrin->mousebtn = 0;
 	return (usrin);
 }
 
@@ -62,7 +63,7 @@ int	main(int ac, char **av)
 	base = ft_init(fd);
 	base->usrin = ft_usrin_init();
 	ft_hooks(base);
-	base->coords = ft_get_coords(base->fd, NULL);
+	base->coords = ft_get_coords(base->fd, base);
 	ft_draw(base);
 	mlx_loop(base->mlx_ptr);
 }

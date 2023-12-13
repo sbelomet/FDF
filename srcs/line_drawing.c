@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:54:57 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 15:28:57 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 10:49:30 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	ft_draw_line_desc(t_coord p1, t_coord p2, t_base *base)
 	d = (2 * dy) - dx;
 	while (p1.x++ < p2.x)
 	{
-		ft_pixel_put(base, p1.x, p1.y, ft_grad(p1.x, p1, p2));
-		//ft_pixel_put(base, p1.x, p1.y, p1.color);
+		//ft_pixel_put(base, p1.x, p1.y, ft_grad(p1.x, p1, p2));
+		ft_pixel_put(base, p1.x, p1.y, p1.color);
 		if (d > 0)
 		{
 			p1.y += yi;
@@ -83,8 +83,8 @@ static void	ft_draw_line_asc(t_coord p1, t_coord p2, t_base *base)
 	d = (2 * dx) - dy;
 	while (p1.y++ < p2.y)
 	{
-		ft_pixel_put(base, p1.x, p1.y, ft_grad(p1.y, p1, p2));
-		//ft_pixel_put(base, p1.x, p1.y, p1.color);
+		//ft_pixel_put(base, p1.x, p1.y, ft_grad(p1.y, p1, p2));
+		ft_pixel_put(base, p1.x, p1.y, p1.color);
 		if (d > 0)
 		{
 			p1.x += xi;

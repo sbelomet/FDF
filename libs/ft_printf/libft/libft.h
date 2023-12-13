@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:17:27 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 13:05:55 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:43:17 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
 double	ft_abs(double n);
+int		ft_max(int a, int b);
 void	*ft_calloc(int count, int size);
 void	ft_free_array(char **array);
 char	*ft_strdup(const char *s1);

@@ -6,11 +6,23 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:38:46 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 15:01:03 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:07:58 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+t_coord	*ft_last_coord(t_coord *coords)
+{
+	t_coord	*tmp;
+
+	tmp = coords;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	return (tmp);
+}
 
 int	ft_atoi_hex(char *s)
 {
@@ -50,4 +62,18 @@ int	get_color(char *z)
 		i++;
 	}
 	return (res);
+}
+
+void	ft_init_coords(t_base *base)
+{
+	t_coord	*tmp;
+
+	tmp = base->coords;
+	while (tmp)
+	{
+		tmp->x = tmp->basex;
+		tmp->y = tmp->basey;
+		tmp->z = tmp->basez;
+		tmp = tmp->next;
+	}
 }

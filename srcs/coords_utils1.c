@@ -6,23 +6,11 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:56:28 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/12 12:10:15 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:51:45 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-t_coord	*ft_last_coord(t_coord *coords)
-{
-	t_coord	*tmp;
-
-	tmp = coords;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-	}
-	return (tmp);
-}
 
 t_coord	*ft_new_coord(int x, int y, char *z)
 {
@@ -100,7 +88,26 @@ void	ft_print_list(t_coord *coords)
 	}
 }
 
-t_coord	*ft_get_coords(int fd, t_coord *coords)
+void	ft_get_coords_meta(t_base *base, int x, int y)
+{
+	t_coord	*tmp;
+	int		big;
+
+	ft_finddown(base->coords, x);
+	tmp = base->coords;
+	while (tmp)
+	{
+		tmp->basex -= x >> 1;
+		tmp->basey -= y >> 1;
+		tmp = tmp->next;
+	}
+	big = ft_max(x, y);
+	ft_printf("big: %d\n", big);
+	if (big <= 20)
+		base->usrin->zoom = 30;
+}
+
+t_coord	*ft_get_coords(int fd, t_base *base)
 {
 	char	*line;
 	char	**linesplit;
@@ -118,13 +125,13 @@ t_coord	*ft_get_coords(int fd, t_coord *coords)
 		x = 0;
 		while (linesplit[x])
 		{
-			ft_coord_add(&coords, ft_new_coord(x, y, linesplit[x]));
+			ft_coord_add(&base->coords, ft_new_coord(x, y, linesplit[x]));
 			x++;
 		}
-		ft_last_coord(coords)->linebreak = 1;
+		ft_last_coord(base->coords)->linebreak = 1;
 		free(line);
 		ft_free_array(linesplit);
 	}
-	ft_finddown(coords, x);
-	return (coords);
+	ft_get_coords_meta(base, x, y);
+	return (base->coords);
 }
