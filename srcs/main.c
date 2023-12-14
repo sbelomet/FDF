@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:01:11 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/13 15:38:03 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:24:06 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_base	*ft_init(int fd)
 	return (base);
 }
 
-t_usrin	*ft_usrin_init()
+t_usrin	*ft_usrin_init(void)
 {
 	t_usrin	*usrin;
 
@@ -45,7 +45,10 @@ t_usrin	*ft_usrin_init()
 	usrin->altitude = 1;
 	usrin->zoom = 3;
 	usrin->xshift = WIDTH >> 1;
-	usrin->yshift = HEIGHT >> 1;
+	usrin->yshift = (HEIGHT >> 2) * 3;
+	usrin->anglex = -0.829066;
+	usrin->angley = 0.489066;
+	usrin->anglez = -0.259066;
 	usrin->mousebtn = 0;
 	return (usrin);
 }

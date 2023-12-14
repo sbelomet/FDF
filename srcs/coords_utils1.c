@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:56:28 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/13 15:51:45 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:35:26 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,14 @@ void	ft_get_coords_meta(t_base *base, int x, int y)
 	ft_printf("big: %d\n", big);
 	if (big <= 20)
 		base->usrin->zoom = 30;
+	else if (big <= 35)
+		base->usrin->zoom = 15;
+	else if (big <= 50)
+		base->usrin->zoom = 10;
+	else if (big <= 100)
+		base->usrin->zoom = 5;
+	else
+		base->usrin->zoom = 3;
 }
 
 t_coord	*ft_get_coords(int fd, t_base *base)

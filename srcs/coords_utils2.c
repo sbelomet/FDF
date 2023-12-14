@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:38:46 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/13 14:07:58 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:21:04 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	get_color(char *z)
 	return (res);
 }
 
-void	ft_init_coords(t_base *base)
+void	ft_reset_coords(t_base *base)
 {
 	t_coord	*tmp;
 

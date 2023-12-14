@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:34:51 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/13 11:34:50 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:13:52 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ int	ft_on_key_down(int key, void *param)
 	ft_printf("key: %d\n", key);
 	if (key == KEY_ESC)
 		ft_close_win(base);
-	else if (key == KEY_UP)
+	else if (key == KEY_PLUS)
 		base->usrin->altitude += 0.01;
-	else if (key == KEY_DOWN)
+	else if (key == KEY_MINUS)
 		base->usrin->altitude -= 0.01;
+	else if (key == KEY_DOWN)
+		base->usrin->anglex += 0.01;
+	else if (key == KEY_UP)
+		base->usrin->anglex -= 0.01;
+	else if (key == KEY_LEFT)
+		base->usrin->angley += 0.01;
+	else if (key == KEY_RIGHT)
+		base->usrin->angley -= 0.01;
+	else if (key == KEY_COMMA)
+		base->usrin->anglez += 0.01;
+	else if (key == KEY_PERIOD)
+		base->usrin->anglez -= 0.01;
 	ft_draw(base);
 	return (0);
 }

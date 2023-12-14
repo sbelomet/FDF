@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:04:58 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/13 14:08:10 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:04:28 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,18 @@
 
 # define KEY_UP 126
 # define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_PLUS 24
+# define KEY_MINUS 27
+# define KEY_COMMA 43
+# define KEY_PERIOD 47
 # define KEY_ESC 53
 # define MOUSE_L 1
 # define MOUSE_R 2
 # define MOUSEW_UP 4
 # define MOUSEW_DOWN 5
+# define MOUSE_M 3
 
 typedef struct s_coord
 {
@@ -51,6 +58,9 @@ typedef struct s_usrin
 {
 	double	altitude;
 	double	zoom;
+	double	anglex;
+	double	angley;
+	double	anglez;
 	int		xshift;
 	int		yshift;
 	int		mousebtn;
@@ -84,7 +94,7 @@ int		ft_on_mouse_move(int x, int y, void *param);
 t_coord	*ft_get_coords(int fd, t_base *base);
 int		get_color(char *z);
 t_coord	*ft_last_coord(t_coord *coords);
-void	ft_init_coords(t_base *base);
+void	ft_reset_coords(t_base *base);
 
 /* Drawing */
 void	ft_draw(t_base *base);
@@ -95,5 +105,6 @@ void	ft_pixel_put(t_base *base, int x, int y, int color);
 void	ft_rotatex(t_coord **coords, double angle);
 void	ft_rotatey(t_coord **coords, double angle);
 void	ft_rotatez(t_coord **coords, double angle);
+void	ft_rotation(t_base *base);
 
 #endif

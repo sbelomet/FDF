@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:00:00 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/07 10:01:32 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:19:17 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,11 @@ void	ft_rotatez(t_coord **coords, double angle)
 		tmp->y = oldx * -sin(angle) + oldy * cos(angle);
 		tmp = tmp->next;
 	}
+}
+
+void	ft_rotation(t_base *base)
+{
+	ft_rotatex(&base->coords, base->usrin->anglex);
+	ft_rotatey(&base->coords, base->usrin->angley);
+	ft_rotatez(&base->coords, base->usrin->anglez);
 }
