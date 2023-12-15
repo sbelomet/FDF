@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:17:27 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/13 15:43:46 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:55:15 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int		ft_toupper(int c);
 int		ft_strlen(const char *s);
 void	ft_revstr(char *s);
+int		ft_strncmp(const char *s1, const char *s2);
 int		ft_tablen(char **tab);
 char	**ft_split(char *s, char c);
 void	*ft_memset(void *b, int c, size_t len);

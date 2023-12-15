@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:56:28 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/14 15:35:26 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/15 13:26:39 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_coord	*ft_new_coord(int x, int y, char *z)
 
 	res = (t_coord *)malloc(sizeof(t_coord));
 	if (!res)
-		ft_error("Malloc faliure (coord)");
+		ft_error("Malloc failure (coord)");
 	i = 0;
 	res->basez = ft_atoi(z);
 	res->basex = x;
@@ -75,19 +75,6 @@ void	ft_finddown(t_coord *coord, int tablen)
 	}
 }
 
-void	ft_print_list(t_coord *coords)
-{
-	t_coord	*tmp;
-
-	tmp = coords;
-	while (tmp)
-	{
-		ft_printf("x: %d, y: %d' z: %d, color: %d, next: %p\n",
-			(int)tmp->basex, (int)tmp->basey, (int)tmp->basez, tmp->color, tmp->next);
-		tmp = tmp->next;
-	}
-}
-
 void	ft_get_coords_meta(t_base *base, int x, int y)
 {
 	t_coord	*tmp;
@@ -102,17 +89,17 @@ void	ft_get_coords_meta(t_base *base, int x, int y)
 		tmp = tmp->next;
 	}
 	big = ft_max(x, y);
-	ft_printf("big: %d\n", big);
 	if (big <= 20)
-		base->usrin->zoom = 30;
+		base->usrin->basezoom = 30;
 	else if (big <= 35)
-		base->usrin->zoom = 15;
+		base->usrin->basezoom = 15;
 	else if (big <= 50)
-		base->usrin->zoom = 10;
+		base->usrin->basezoom = 10;
 	else if (big <= 100)
-		base->usrin->zoom = 5;
+		base->usrin->basezoom = 5;
 	else
-		base->usrin->zoom = 3;
+		base->usrin->basezoom = 3;
+	base->usrin->zoom = base->usrin->basezoom;
 }
 
 t_coord	*ft_get_coords(int fd, t_base *base)

@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:26:12 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/14 16:05:54 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:06:15 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	ft_on_mouse_up(int button, int x, int y, void *param)
 void	ft_mouse_action(int button, t_base *base)
 {
 	if (button == MOUSEW_UP)
-		base->usrin->zoom += 0.5;
+		base->usrin->zoom += 1;
 	else if (button == MOUSEW_DOWN)
-		base->usrin->zoom -= 0.5;
+		base->usrin->zoom -= 1;
 	else if (button == MOUSE_M)
 	{
 		base->usrin->altitude = 1;
-		base->usrin->zoom = 3;
-		base->usrin->xshift = WIDTH >> 1;
+		base->usrin->zoom = base->usrin->basezoom;
+		base->usrin->xshift = ((WIDTH - A_WIDTH) >> 1) + A_WIDTH;
 		base->usrin->yshift = (HEIGHT >> 2) * 3;
 		base->usrin->anglex = -0.829066;
 		base->usrin->angley = 0.489066;
@@ -51,7 +51,6 @@ int	ft_on_mouse_down(int button, int x, int y, void *param)
 
 	base = (t_base *)param;
 	base->usrin->mousebtn = button;
-	ft_printf("mouse button: %d\n", button);
 	if (button == MOUSEW_UP || button == MOUSEW_DOWN || button == MOUSE_M)
 		ft_mouse_action(button, base);
 	(void)x;
@@ -59,29 +58,41 @@ int	ft_on_mouse_down(int button, int x, int y, void *param)
 	return (0);
 }
 
+void	ft_mouse_translate(t_base *base, int x, int y, int *start)
+{
+	if (start[0] != -1)
+	{
+		base->usrin->xshift += x - start[0];
+		base->usrin->yshift += y - start[1];
+	}
+	start[0] = x;
+	start[1] = y;
+	ft_draw(base);
+}
+
 int	ft_on_mouse_move(int x, int y, void *param)
 {
 	t_base		*base;
-	static int	startx = -1;
-	static int	starty = -1;
+	static int	start[] = {-1, -1};
 
 	base = (t_base *)param;
 	if (base->usrin->mousebtn == MOUSE_R)
+		ft_mouse_translate(base, x, y, start);
+	else if (base->usrin->mousebtn == MOUSE_L)
 	{
-		ft_printf("mouse pos: %d %d\n", x, y);
-		if (startx != -1)
+		if (start[0] != -1)
 		{
-			base->usrin->xshift += x - startx;
-			base->usrin->yshift += y - starty;
+			base->usrin->angley -= (double)(x - start[0]) / 100;
+			base->usrin->anglex += (double)(y - start[1]) / 100;
 		}
-		startx = x;
-		starty = y;
+		start[0] = x;
+		start[1] = y;
 		ft_draw(base);
 	}
-	else if (startx != -1)
+	else if (start[0] != -1)
 	{
-		startx = -1;
-		starty = -1;
+		start[0] = -1;
+		start[1] = -1;
 	}
 	return (0);
 }

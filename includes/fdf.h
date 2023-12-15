@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:04:58 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/14 15:04:28 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:24:38 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 # include <math.h>
 # include <stdlib.h>
 
-# define TITLE " -| Fil De Fer |- "
+# define TITLE "-| Fil De Fer |-"
 
-# define WIDTH 720
+# define WIDTH 1000
 # define HEIGHT 720
+# define A_WIDTH 300
+# define A_HEIGHT 325
 
 # define KEY_UP 126
 # define KEY_DOWN 125
@@ -58,6 +60,7 @@ typedef struct s_usrin
 {
 	double	altitude;
 	double	zoom;
+	double	basezoom;
 	double	anglex;
 	double	angley;
 	double	anglez;
@@ -75,7 +78,6 @@ typedef struct s_base
 	int			size_line;
 	int			bitsperpix;
 	int			endian;
-	int			fd;
 	t_coord		*coords;
 	t_usrin		*usrin;
 }				t_base;
@@ -86,8 +88,8 @@ void	ft_error(char *message);
 /* Hooks Handling */
 void	ft_hooks(t_base *base);
 int		ft_close_win(void *param);
-int 	ft_on_mouse_up(int button, int x, int y, void *param);
-int 	ft_on_mouse_down(int button, int x, int y, void *param);
+int		ft_on_mouse_up(int button, int x, int y, void *param);
+int		ft_on_mouse_down(int button, int x, int y, void *param);
 int		ft_on_mouse_move(int x, int y, void *param);
 
 /* Coords Utils */
@@ -100,6 +102,12 @@ void	ft_reset_coords(t_base *base);
 void	ft_draw(t_base *base);
 void	ft_draw_line(t_coord p1, t_coord p2, t_base *base);
 void	ft_pixel_put(t_base *base, int x, int y, int color);
+void	ft_draw_menu(t_base *base);
+
+/* Movement */
+void	ft_altitude(t_base *base);
+void	ft_zoom(t_base *base);
+void	ft_translate(t_base *base);
 
 /* Rotation Matrices */
 void	ft_rotatex(t_coord **coords, double angle);
