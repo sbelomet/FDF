@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:34:51 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/15 15:51:26 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:03:30 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,16 @@ int	ft_on_key_down(int key, void *param)
 	base = (t_base *)param;
 	if (key == KEY_ESC)
 		ft_close_win(base);
-	else if (key == KEY_PLUS)
-		base->usrin->altitude += 0.01;
-	else if (key == KEY_MINUS)
-		base->usrin->altitude -= 0.01;
-	else if (key == KEY_DOWN)
-		base->usrin->anglex += 0.01;
-	else if (key == KEY_UP)
-		base->usrin->anglex -= 0.01;
-	else if (key == KEY_LEFT)
-		base->usrin->angley += 0.01;
-	else if (key == KEY_RIGHT)
-		base->usrin->angley -= 0.01;
-	else if (key == KEY_COMMA)
-		base->usrin->anglez += 0.01;
-	else if (key == KEY_PERIOD)
-		base->usrin->anglez -= 0.01;
+	else if (key == KEY_PLUS || key == KEY_MINUS)
+		ft_key_altitude(base, key);
+	else if (key == KEY_DOWN || key == KEY_UP || key == KEY_RIGHT
+		|| key == KEY_LEFT || key == KEY_COMMA || key == KEY_PERIOD)
+		ft_key_rotate(base, key);
+	else if (key == KEY_ONE || key == KEY_TWO || key == KEY_THREE
+		|| key == KEY_FOUR || key == KEY_FIVE || key == KEY_SIX)
+		ft_set_color(base, key);
+	else if (key == KEY_N_ONE || key == KEY_N_THREE || key == KEY_N_SEVEN)
+		ft_key_view(base, key);
 	ft_draw(base);
 	return (0);
 }

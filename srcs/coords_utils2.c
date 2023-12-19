@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:38:46 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/14 14:21:04 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:55:24 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,35 @@ int	get_color(char *z)
 	return (res);
 }
 
-void	ft_reset_coords(t_base *base)
+void	ft_max_points(t_base *base)
+{
+	t_coord	*tmp;
+	t_coord	*tmpmin;
+	t_coord	*tmpmax;
+
+	tmp = base->coords;
+	tmpmin = base->coords;
+	tmpmax = base->coords;
+	while (tmp)
+	{
+		if (tmp->basez > tmpmax->basez)
+			tmpmax = tmp;
+		else if (tmp->basez < tmpmin->basez)
+			tmpmin = tmp;
+		tmp = tmp->next;
+	}
+	base->max = tmpmax->basez;
+	base->min = tmpmin->basez;
+}
+
+void	ft_get_percent(t_base *base)
 {
 	t_coord	*tmp;
 
 	tmp = base->coords;
 	while (tmp)
 	{
-		tmp->x = tmp->basex;
-		tmp->y = tmp->basey;
-		tmp->z = tmp->basez;
+		tmp->per = ft_percent(base->min, base->max, tmp->basez);
 		tmp = tmp->next;
 	}
 }

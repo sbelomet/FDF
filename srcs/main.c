@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:01:11 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/15 14:56:04 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:53:09 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,24 @@ t_usrin	*ft_usrin_init(void)
 	return (usrin);
 }
 
+int	ft_strcomp(char *s1, char *s2)
+{
+	int	i;
+
+	ft_revstr(s1);
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			break ;
+		i++;
+	}
+	ft_revstr(s1);
+	if (i == 4)
+		return (1);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -58,8 +76,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error("Correct usage is ./fdf <path/map.fdf>");
-	if (!ft_strncmp("maps/", av[1]))
-		ft_error("Uncomplete filepath");
+	if (!ft_strcomp(av[1], "fdf."))
+		ft_error("Incorrect filepath");
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		ft_error("Couldn't open file");

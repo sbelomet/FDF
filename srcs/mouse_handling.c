@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:26:12 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/15 14:06:15 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:10:50 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	ft_mouse_action(int button, t_base *base)
 		base->usrin->anglex = -0.829066;
 		base->usrin->angley = 0.489066;
 		base->usrin->anglez = -0.259066;
+		ft_set_color(base, KEY_ONE);
 	}
 	if (base->usrin->zoom < 0)
 		base->usrin->zoom = 0;

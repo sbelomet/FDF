@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:56:28 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/12/15 13:26:39 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:25:16 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_coord	*ft_new_coord(int x, int y, char *z)
 	res->basex = x;
 	res->basey = y;
 	res->linebreak = 0;
-	res->color = get_color(z);
+	res->basecolor = get_color(z);
+	res->color = res->basecolor;
 	res->next = NULL;
 	res->down = NULL;
 	return (res);
@@ -100,6 +101,8 @@ void	ft_get_coords_meta(t_base *base, int x, int y)
 	else
 		base->usrin->basezoom = 3;
 	base->usrin->zoom = base->usrin->basezoom;
+	ft_max_points(base);
+	ft_get_percent(base);
 }
 
 t_coord	*ft_get_coords(int fd, t_base *base)
