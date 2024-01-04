@@ -36,12 +36,16 @@ devrais donner quelque chose comme ça:
 
 <img width="998" alt="Screen Shot 2024-01-03 at 3 02 41 PM" src="https://github.com/sbelomet/FDF/assets/148435833/2dba8a1c-18d2-49b9-9964-689b3bca8330">
 
-Pour un 100 points ya pas besoin de toutes les commandes de mouvement et personnalisation
+Pour un 100 points ya pas besoin de toutes les commandes de mouvement et personnalisation.
+
+##
 
 ### Pour me voler le mien
 
 1. `make`
 2. `./fdf <map.fdf>` (j'ai plein de cartes dans le dossier `maps/`)
+
+##
 
 ### Des images en plus parce que j'adore ce projet
 
