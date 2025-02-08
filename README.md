@@ -1,22 +1,22 @@
 # 🗺 FDF 🗺
 
-`les potes on refait blender`
+`Wireframe map viewer`
 
-### Resources utiles
+### Useful resources
 
-**📚 [`GITBOOK`](https://42-cursus.gitbook.io/guide/rank-02/fdf) 📚** - Gitbook pour fdf
+**📚 [`GITBOOK`](https://42-cursus.gitbook.io/guide/rank-02/fdf) 📚** - Gitbook for fdf
 
-**🖼 [`GITBOOK MLX`](https://42-cursus.gitbook.io/guide/minilibx) 🖼** - Gitbook pour la MLX
+**🖼 [`GITBOOK MLX`](https://42-cursus.gitbook.io/guide/minilibx) 🖼** - Gitbook for MLX
 
-**📈 [`BRESENHAM`](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) 📉** - Algo simple pour tracer une ligne
+**📈 [`BRESENHAM`](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) 📉** - Line drawing algorithm
 
-**✖️ [`MATRICES DE ROTATIONS`](https://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions) ✖️** - Matrices pour faire des rotations en 3D
+**✖️ [`MATRICES DE ROTATIONS`](https://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions) ✖️** - Rotation matrices
 
 ## 
 
-### Ce qu'il faut faire
+### What to do
 
-Un visionneur de cartes en 3D en fil de fer. Une carte au format `.fdf` comme celle-ci:
+The program should take in a custom map file and show a wireframe rendition of it. A map with the `.fdf` looks like this:
 
 ```
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
@@ -32,25 +32,25 @@ Un visionneur de cartes en 3D en fil de fer. Une carte au format `.fdf` comme ce
 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 ```
 
-devrais donner quelque chose comme ça:
+and should result in this:
 
-<img width="998" alt="Screen Shot 2024-01-03 at 3 02 41 PM" src="https://github.com/sbelomet/FDF/assets/148435833/2dba8a1c-18d2-49b9-9964-689b3bca8330">
+<img width="720" alt="Screen Shot 2024-01-03 at 3 02 41 PM" src="https://github.com/sbelomet/FDF/assets/148435833/2dba8a1c-18d2-49b9-9964-689b3bca8330">
 
-Pour un 100 points ya pas besoin de toutes les commandes de mouvement et personnalisation.
+Translation, rotation, zoom and color customization were also added.
 
 ##
 
-### Pour me voler le mien
+### Usage
 
 1. `make`
-2. `./fdf <map.fdf>` (j'ai plein de cartes dans le dossier `maps/`)
+2. `./fdf <map.fdf>` (plenty of maps in `maps/`)
 
 ##
 
-### Des images en plus parce que j'adore ce projet
+### A few images
 
-<img width="998" alt="Screen Shot 2024-01-03 at 3 52 59 PM" src="https://github.com/sbelomet/FDF/assets/148435833/20819ddb-e2dc-4a10-8635-1d0d06d5d0ac">
+<img width="720" alt="Screen Shot 2024-01-03 at 3 52 59 PM" src="https://github.com/sbelomet/FDF/assets/148435833/20819ddb-e2dc-4a10-8635-1d0d06d5d0ac">
 
-<img width="999" alt="Screen Shot 2024-01-03 at 3 54 58 PM" src="https://github.com/sbelomet/FDF/assets/148435833/837ddac3-3a9b-47ae-9822-c5be3cbd0cc9">
+<img width="720" alt="Screen Shot 2024-01-03 at 3 54 58 PM" src="https://github.com/sbelomet/FDF/assets/148435833/837ddac3-3a9b-47ae-9822-c5be3cbd0cc9">
 
-<img width="999" alt="Screen Shot 2024-01-03 at 3 57 31 PM" src="https://github.com/sbelomet/FDF/assets/148435833/14edd9cf-d642-4765-9508-3d92ccbf1c90">
+<img width="720" alt="Screen Shot 2024-01-03 at 3 57 31 PM" src="https://github.com/sbelomet/FDF/assets/148435833/14edd9cf-d642-4765-9508-3d92ccbf1c90">
